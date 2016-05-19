@@ -21,24 +21,25 @@ $(function() {
          * allFeeds in app.js to be an empty array and refresh the
          * page?
          */
+        // This test was provided by Udacity
         it('are defined', function() {
             expect(allFeeds).toBeDefined();
             expect(allFeeds.length).not.toBe(0);
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* This test loops through each feed
          * in the allFeeds object and ensures it has a URL defined
          * and that the URL is not empty.
          */
         it('have URLs defined and the URLs are not empty', function() {
             // URLs should be defined
             for (var i = 0; i < allFeeds.length; i++) {
-                expect(allFeeds[i].url).not.toBeUndefined();
-                expect(allFeeds[i].url).not.toEqual('');
+                expect(allFeeds[i].url).not.toBeUndefined(); // url property of allFeeds is defined.
+                expect(allFeeds[i].url).not.toEqual(''); // url property of allFeeds is not empty.
             }
         });
 
-        /* TODO: Write a test that loops through each feed
+        /* This is a test that loops through each feed
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
@@ -53,15 +54,14 @@ $(function() {
 
     });
 
-
-    /* TODO: Write a new test suite named "The menu" */
-
-    /* TODO: Write a test that ensures the menu element is
+    /* This is a test suite named "The menu" */
+    /* This suite contains a test that ensures the menu element is
      * hidden by default. You'll have to analyze the HTML and
      * the CSS to determine how we're performing the
      * hiding/showing of the menu element.
      */
 
+    // I got help from this URL. 
     // http://www.htmlgoodies.com/beyond/javascript/js-ref/testing-dom-events-using-jquery-and-jasmine-2.0.html
 
     describe('The menu', function() {
@@ -71,7 +71,7 @@ $(function() {
         });
     });
 
-    /* TODO: Write a test that ensures the menu changes
+    /* Write a test that ensures the menu changes
      * visibility when the menu icon is clicked. This test
      * should have two expectations: does the menu display when
      * clicked and does it hide when clicked again.
@@ -92,49 +92,45 @@ $(function() {
     });
 
 
-    /* TODO: Write a new test suite named "Initial Entries" */
+    /* This is a new test suite named "Initial Entries" */
 
     describe('Initial entries', function() {
         // write a test that ensures the loadFeed function is called.
 
-        /* TODO: Write a test that ensures when the loadFeed
+        /* Write a test that ensures when the loadFeed
          * function is called and completes its work, there is at least
          * a single .entry element within the .feed container.
          * Remember, loadFeed() is asynchronous so this test will require
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
-        beforeEach(function(done){
-            loadFeed(0,done);
+        beforeEach(function(done) {
+            loadFeed(0, done);
         });
 
-        it('- there is at least one .entry element in the .feed container',function(){
+        it('- there is at least one .entry element in the .feed container', function() {
             expect($('.entry')[0]).toBeDefined();
-
-        }); 
+        });
     });
 
-
+    // This is a new test suite named "New Feed Selection"
     describe('New feed selection', function() {
-
-    /* TODO: Write a new test suite named "New Feed Selection"
-        /* TODO: Write a test that ensures when a new feed is loaded
+        /* This test ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
-        var feedContent; 
-        beforeEach(function(done){
-            loadFeed(0,function(){
-               console.log($('.feed').html());
-               feedContent = $('.feed').html(); 
-               done();
+        var feedContent;
+        beforeEach(function(done) {
+            loadFeed(0, function() {
+                console.log($('.feed').html());
+                feedContent = $('.feed').html();
+                done();
             });
         });
-        
-        it('- when a new feed is loaded, content actually changes',function(done){
-            loadFeed(1,function(){
-               console.log($('.feed').html());
+        it('- when a new feed is loaded, content actually changes', function(done) {
+            loadFeed(1, function() {
+                console.log($('.feed').html());
                 expect(feedContent).not.toEqual($('.feed').html());
-               done();
+                done();
             });
 
         });
